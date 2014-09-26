@@ -1,0 +1,66 @@
+.spinBox{
+  position      : relative;
+  display       : inline-block;
+  padding-right : 0.875em;
+}
+
+.spinBox input{
+  display                   : block;
+  height                    : 1.5625em;
+  padding                   : 0 0.25em;
+  border                    : 0.0625em solid rgb(192,192,192);
+  border-right              : none;
+  border-top-left-radius    : 0.25em;
+  border-bottom-left-radius : 0.25em;
+  background                : #DADADA;
+/*  background-image          :    -moz-linear-gradient(rgb(218,218,218),rgb(255,255,255));
+  background-image          :     -ms-linear-gradient(rgb(218,218,218),rgb(255,255,255));
+  background-image          :      -o-linear-gradient(rgb(218,218,218),rgb(255,255,255));
+  background-image          : -webkit-linear-gradient(rgb(218,218,218),rgb(255,255,255));
+  background-image          :         linear-gradient(rgb(218,218,218),rgb(255,255,255));*/
+  font-family               : inherit;
+  font-size                 : 1em;
+  text-align                : right;
+}
+
+.spinBoxUp,
+.spinBoxDown{
+  position         : absolute;
+  right            : 0;
+  display          : block;
+  width            : 0.75em;
+  height           : 0.75em;
+  border           : 0.0625em solid rgb(192,192,192);
+  background       : rgb(224,224,224);
+  background-image :    -moz-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :     -ms-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :      -o-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image : -webkit-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :         linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  cursor           : pointer;
+}
+
+.spinBoxUp span,
+.spinBoxDown span{
+  display : block;
+  width   : 0.75em;
+  height  : 0.75em;
+}
+
+.spinBoxUp{
+  top                     : 0;
+  border-top-right-radius : 0.25em;
+}
+
+.spinBoxUp span{
+  background:url('arrow-up.png') no-repeat center center;
+}
+
+.spinBoxDown{
+  bottom                     : 0;
+  border-bottom-right-radius : 0.25em;
+}
+
+.spinBoxDown span{
+  background:url('arrow-down.png') no-repeat center center;
+}

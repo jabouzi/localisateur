@@ -1,0 +1,145 @@
+body
+{
+    /*	font-family: Verdana;
+            font-size: 12px;*/
+}
+
+table#calendar
+{
+    border: 1px solid #ccc;
+    border-collapse:collapse;
+    background: #eee;
+}
+table#calendar td
+{
+    padding:0;
+}
+
+table#calendar td.month
+{
+/*    font-family: Trebuchet MS;*/
+    font-size: 17px;
+    color: #fff;
+    font-weight: bold;
+    padding:8px 0;
+}
+
+table#calendar tr
+{
+    text-align: center;
+}
+
+table#calendar tr.daynames td
+{
+    width: 50px;
+/*    height: 25px;*/
+    background: #666;
+    color: #fff;
+    text-align:center;
+}
+
+table#calendar tr.week td
+{
+    height: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    vertical-align: middle;
+    text-align:center;
+    border:1px solid #ccc;
+}
+
+table#calendar td.today
+{
+    color: white;
+    font-weight: bold;
+    background: #666;
+}
+
+table#calendar td.event
+{
+    color: white;
+    font-weight: bold;
+    background: #9E1E22;
+}
+
+table#calendar td.active
+{
+    color: white;
+    font-weight: bold;
+    background: #AC2525;
+}
+
+table#events
+{
+    border: 0px;
+    /*background: #eee;*/
+    width:100%;
+}
+
+table#events td
+{
+/*    border: 1px solid #ccc;
+    font-family: Trebuchet MS;*/
+    font-size: 15px;
+    font-weight: bold;
+}
+
+table#events tr
+{
+    border: 0px;
+    text-align: center;
+}
+
+a.monthnav
+{
+    font-size: 10px;
+    color: #666;
+    text-decoration: none;
+}
+
+a.monthnav:hover
+{
+    color: green;
+    text-decoration: underline;
+}
+
+
+
+#calendar tr:first-child {
+    background-color: #9E1E22;
+}
+#calendar tr:first-child td {
+    text-align: center;
+}
+#calendar tr:first-child img {
+    /*vertical-align: text-top;*/
+}
+#calendar {
+    /*float: left;
+    width: 36%;
+    margin-right: 25px;*/
+    width:100%;
+}
+#events td {
+    padding-left: 10px;
+}
+table tbody tr.list {
+    background-color: transparent;
+}
+.dayevents {
+    border: 0px;
+}
+.dayevents p {
+    color: grey;
+}
+
+#jobs_calendar { overflow:hidden; }
+
+#events { border:0px solid #ccc !important;border-width:1px 1px 1px 1px !important; }
+#events a { font-size:12px; }
+#events .prev { vertical-align:middle; }
+#events .prev a { display:inline-block;background:#eeeeee;padding:5px 10px 10px 10px;border:1px solid #ccc; }
+#events .next { vertical-align:middle;text-align:right; }
+#events .next a { display:inline-block;background:#eeeeee;padding:5px 10px 10px 10px;border:1px solid #ccc; }
+
+.calevents .leftcal { width:265px;margin-right:20px; }

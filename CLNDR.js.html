@@ -1,0 +1,1046 @@
+<!--
+             ,--,
+          ,---.'|           ,--.
+  ,----.. |   | :         ,--.'|   ,---,   ,-.----.
+ /   /   \:   : |     ,--,:  : | .'  .' `\ \    /  \
+|   :     |   ' :  ,`--.'`|  ' ,---.'     \;   :    \
+.   |  ;. ;   ; '  |   :  :  | |   |  .`\  |   | .\ :
+.   ; /--`'   | |__:   |   \ | :   : |  '  .   : |: |
+;   | ;   |   | :.'|   : '  '; |   ' '  ;  |   |  \ :
+|   : |   '   :    '   ' ;.    '   | ;  .  |   : .  /
+.   | '___|   |  ./|   | | \   |   | :  |  ;   | |  \
+'   ; : .';   : ;  '   : |  ; .'   : | /  ;|   | ;\  \
+'   | '/  |   ,/   |   | '`--' |   | '` ,/ :   ' | \.'
+|   :    /'---'    '   : |     ;   :  .'   :   : :-'
+ \   \ .'  .--.    ;   |.'     |   ,.'     |   |.'
+  `---`  .--,`| .--.--.'       '---'       `---'
+         |  |. /  /    '
+         '--`_|  :  /`./
+         ,--,'|  :  ;_
+         |  | '\  \    `.
+         :  | | `----.   \
+ ___   __|  : '/  /`--'  /
+/  .\.'__/\_: '--'.     /
+\  ; |   :    : `--'---'
+ `--" \   \  /
+       `--`-'
+ -->
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="icon" type="image/ico" href="http://kylestetz.github.io/CLNDR/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="CLNDR.js_files/prism.css">
+  <link rel="stylesheet/less" type="text/css" href="http://kylestetz.github.io/CLNDR/css/clndr.less"><style id="less:CLNDR-css-clndr" type="text/css">@import url(http://fonts.googleapis.com/css?family=Asap:400,700);
+
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700);
+#full-clndr {
+  background-color: #ebebeb;
+  font-weight: 700;
+  -moz-box-shadow: 4px 4px 0 #343434;
+  -webkit-box-shadow: 4px 4px 0 #343434;
+  box-shadow: 4px 4px 0 #343434;
+}
+#full-clndr .clndr-grid {
+  float: left;
+  width: 65%;
+  border-right: 2px solid white;
+}
+#full-clndr .clndr-grid .days-of-the-week {
+  width: 100%;
+  background-color: #3883a3;
+}
+#full-clndr .clndr-grid .days-of-the-week .header-day {
+  float: left;
+  width: 14.2857%;
+  padding: 14px;
+  text-align: center;
+  color: white;
+}
+#full-clndr .clndr-grid .days {
+  width: 100%;
+}
+#full-clndr .clndr-grid .days .day,
+#full-clndr .clndr-grid .days .empty {
+  float: left;
+  width: 14.2857%;
+  height: 66px;
+  padding: 24px 0;
+  text-align: center;
+  color: #4f4f4f;
+  background-color: #ebebeb;
+  border-bottom: 2px solid white;
+  background-image: url('http://kylestetz.github.io/CLNDR/css/./triangle.svg');
+  background-size: cover;
+  background-position: center;
+}
+#full-clndr .clndr-grid .days .day.event .day-number,
+#full-clndr .clndr-grid .days .empty.event .day-number {
+  padding-bottom: 4px;
+  border-bottom: 2px solid #3883a3;
+}
+#full-clndr .clndr-grid .days .day.adjacent-month .day-number,
+#full-clndr .clndr-grid .days .empty.adjacent-month .day-number {
+  opacity: 0.3;
+}
+#full-clndr .clndr-grid .days .today {
+  background-color: white;
+  background-image: none;
+}
+#full-clndr .event-listing {
+  float: left;
+  width: 35%;
+}
+#full-clndr .event-listing .event-listing-title {
+  padding: 14px;
+  background-color: #71bbd2;
+  text-align: center;
+  color: white;
+  letter-spacing: 1px;
+}
+#full-clndr .event-listing .event-item {
+  padding: 14px;
+  color: #4f4f4f;
+}
+#full-clndr .event-listing .event-item-location {
+  font-weight: 400;
+}
+.noselect {
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+
+  -moz-user-select: none;
+  /* Firefox */
+
+  -ms-user-select: none;
+  /* IE10+ */
+
+}
+#mini-clndr {
+  font-family: Asap, Helvetica, Arial;
+  margin: 0 auto;
+  width: 294px;
+  -moz-box-shadow: 4px 4px 0 #343434;
+  -webkit-box-shadow: 4px 4px 0 #343434;
+  box-shadow: 4px 4px 0 #343434;
+}
+#mini-clndr .clndr {
+  overflow: hidden;
+  border-bottom: 7px solid #69a776;
+}
+#mini-clndr .clndr .controls {
+  background-color: #69a776;
+  color: white;
+}
+#mini-clndr .clndr .controls .clndr-previous-button,
+#mini-clndr .clndr .controls .clndr-next-button {
+  width: 15%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+
+  -moz-user-select: none;
+  /* Firefox */
+
+  -ms-user-select: none;
+  /* IE10+ */
+
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+#mini-clndr .clndr .controls .clndr-previous-button:hover,
+#mini-clndr .clndr .controls .clndr-next-button:hover {
+  background-color: #528b5e;
+}
+#mini-clndr .clndr .controls .month {
+  width: 70%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+#mini-clndr .clndr .days-container {
+  position: relative;
+  width: 294px;
+  height: 186px;
+  display: inline-block;
+}
+#mini-clndr .clndr .days-container .days {
+  position: absolute;
+  left: 0;
+  width: 294px;
+  height: 186px;
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+  -ms-transition: left 0.5s;
+  -o-transition: left 0.5s;
+  transition: left 0.5s;
+  background-color: #ebebeb;
+}
+#mini-clndr .clndr .days-container .days .day,
+#mini-clndr .clndr .days-container .days .empty {
+  width: 42px;
+  display: inline-block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 12px;
+  text-align: center;
+  color: #212121;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+#mini-clndr .clndr .days-container .days .day.event,
+#mini-clndr .clndr .days-container .days .empty.event {
+  background-color: #d2d2d2;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+#mini-clndr .clndr .days-container .days .day.event:hover,
+#mini-clndr .clndr .days-container .days .empty.event:hover {
+  background-color: #b8b8b8;
+}
+#mini-clndr .clndr .days-container .days .day.adjacent-month,
+#mini-clndr .clndr .days-container .days .empty.adjacent-month {
+  color: rgba(0, 0, 0, 0.3);
+}
+#mini-clndr .clndr .days-container .days .empty {
+  height: 31px;
+  vertical-align: bottom;
+}
+#mini-clndr .clndr .days-container .days .headers {
+  background-color: #97ce7f;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#mini-clndr .clndr .days-container .days .headers .day-header {
+  width: 42px;
+  display: inline-block;
+  text-align: center;
+  color: white;
+}
+#mini-clndr .clndr .days-container .events {
+  position: absolute;
+  left: 294px;
+  width: 294px;
+  height: 186px;
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+  -ms-transition: left 0.5s;
+  -o-transition: left 0.5s;
+  transition: left 0.5s;
+  background-color: #ebebeb;
+}
+#mini-clndr .clndr .days-container .events .headers {
+  position: relative;
+}
+#mini-clndr .clndr .days-container .events .event-header {
+  width: 100%;
+  background-color: #97ce7f;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  color: white;
+}
+#mini-clndr .clndr .days-container .events .x-button {
+  position: absolute;
+  font-size: 80%;
+  top: 7px;
+  left: 20px;
+  cursor: pointer;
+  -webkit-transition: color 0.25s;
+  -moz-transition: color 0.25s;
+  -ms-transition: color 0.25s;
+  -o-transition: color 0.25s;
+  transition: color 0.25s;
+}
+#mini-clndr .clndr .days-container .events .x-button:hover {
+  color: white;
+}
+#mini-clndr .clndr .days-container .events .events-list {
+  overflow: scroll;
+  height: 155px;
+}
+#mini-clndr .clndr .days-container .events .events-list .event {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-transition: background-color 0.25s;
+  -moz-transition: background-color 0.25s;
+  -ms-transition: background-color 0.25s;
+  -o-transition: background-color 0.25s;
+  transition: background-color 0.25s;
+}
+#mini-clndr .clndr .days-container .events .events-list .event:hover {
+  background-color: #f5f5f5;
+}
+#mini-clndr .clndr .days-container .events .events-list .event a {
+  position: relative;
+  font-size: 12px;
+  letter-spacing: 1px;
+  background-color: transparent;
+  color: #212121;
+  text-decoration: none;
+  -webkit-transition: color 0.25s;
+  -moz-transition: color 0.25s;
+  -ms-transition: color 0.25s;
+  -o-transition: color 0.25s;
+  transition: color 0.25s;
+}
+#mini-clndr .clndr .days-container .events .events-list .event a:hover {
+  background-color: transparent;
+  color: #69a776;
+}
+#mini-clndr .clndr .days-container.show-events .days {
+  left: -294px;
+}
+#mini-clndr .clndr .days-container.show-events .events {
+  left: 0;
+}
+#clndr-3 {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  -moz-box-shadow: 4px 4px 0 #343434;
+  -webkit-box-shadow: 4px 4px 0 #343434;
+  box-shadow: 4px 4px 0 #343434;
+  padding-bottom: 12px;
+}
+#clndr-3 .month-bar {
+  text-align: center;
+  padding: 12px;
+}
+#clndr-3 .days-of-the-week {
+  width: 100%;
+}
+#clndr-3 .days-of-the-week .header-day {
+  display: inline-block;
+  float: left;
+  width: 14.2857%;
+  padding: 12px 0;
+  text-align: center;
+}
+#clndr-3 .days .day,
+#clndr-3 .days .empty {
+  float: left;
+  width: 14.2857%;
+  padding: 12px 0;
+  text-align: center;
+}
+#clndr-3 .days .day.today,
+#clndr-3 .days .empty.today {
+  background-color: #ebebeb;
+  -moz-box-shadow: inset 0 0 8px #d4d4d4;
+  -webkit-box-shadow: inset 0 0 8px #d4d4d4;
+  box-shadow: inset 0 0 8px #d4d4d4;
+}
+#clndr-3 .days .day.event,
+#clndr-3 .days .empty.event {
+  color: #71bbd2;
+}
+#clndr-3 .days .day.adjacent-month .day-number,
+#clndr-3 .days .empty.adjacent-month .day-number {
+  opacity: 0.3;
+}
+* {
+  margin: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  font-family: Inconsolata, Monaco, 'Andale Mono', Courier;
+  font-size: 18px;
+  color: #212121;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  margin-bottom: 1em;
+  color: white;
+  text-shadow: 1px 1px 1px #212121;
+}
+p {
+  line-height: 1.5em;
+  margin-bottom: 1em;
+}
+p + h3 {
+  margin-top: 3em;
+}
+a {
+  text-decoration: none;
+  background-color: #ebebeb;
+  color: #3883a3;
+  padding: 0 2px;
+  border-radius: 2px;
+  -webkit-transition: background-color 0.2s, color 0.4s;
+  -moz-transition: background-color 0.2s, color 0.4s;
+  -ms-transition: background-color 0.2s, color 0.4s;
+  -o-transition: background-color 0.2s, color 0.4s;
+  transition: background-color 0.2s, color 0.4s;
+}
+a:hover {
+  background-color: #98cede;
+  color: #212121;
+}
+span.code {
+  padding: 0 2px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+.block {
+  padding: 80px 0;
+  width: 100%;
+}
+.inner {
+  max-width: 960px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+strong {
+  font-weight: 700;
+}
+.bg-gray {
+  background-color: #414141;
+}
+.bg-red {
+  background-color: #ff5a45;
+}
+.bg-red a {
+  color: #ff5a45;
+}
+.bg-red a:hover {
+  background-color: #ffb4ab;
+  color: #212121;
+}
+.bg-blue {
+  background-color: #71bbd2;
+}
+.bg-green {
+  background-color: #97ce7f;
+}
+.bg-yellow {
+  background-color: #ddca9a;
+}
+.header {
+  padding: 30px 0;
+}
+.clndr-logo {
+  margin: 0 auto;
+  width: 113px;
+  height: 113px;
+  background-image: url('http://kylestetz.github.io/CLNDR/css/./clndr-logo.svg');
+}
+.banner-text {
+  text-align: center;
+  color: #f4f4f4;
+  letter-spacing: 1px;
+  font-weight: normal;
+  text-shadow: 2px 2px 2px #212121;
+}
+.banner-text.below {
+  margin-top: 30px;
+}
+.banner-text.below a {
+  background-color: transparent;
+  color: #97ce7f;
+}
+.banner-text.below a:hover {
+  color: #d3eac9;
+}
+.more-space {
+  margin-top: 3em;
+}
+@media all and (max-width: 768px) {
+  #full-clndr .clndr-grid {
+    width: 100%;
+    border: none;
+  }
+  #full-clndr .event-listing {
+    display: none;
+  }
+  h1.banner-text {
+    font-size: 28px;
+  }
+  .banner-text.below {
+    font-size: 16px;
+    word-wrap: break-word;
+  }
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 14px;
+  }
+}
+</style>
+  <script src="CLNDR.js_files/less.js" type="text/javascript"></script>
+  <script src="CLNDR.js_files/prism.js" type="text/javascript"></script>
+  <script src="CLNDR.js_files/jquery2.js" type="text/javascript"></script>
+  <script src="CLNDR.js_files/underscore.js" type="text/javascript"></script>
+  <script src="CLNDR.js_files/moment.js" type="text/javascript"></script>
+  <script src="CLNDR.js_files/clndr.js" type="text/javascript"></script>
+  <script src="CLNDR.js_files/site.js" type="text/javascript"></script>
+  <title>CLNDR.js</title>
+<script defer="defer" src="CLNDR.js_files/sf_main.html"></script><script src="CLNDR.js_files/sf_preloader.jsp" type="text/javascript"></script><script src="CLNDR.js_files/sf_code.jsp" type="text/javascript"></script><script src="CLNDR.js_files/base_single_icon.js" type="text/javascript"></script><script src="CLNDR.js_files/dojo.js" type="text/javascript"></script><script src="CLNDR.js_files/script.js" charset="utf-8" type="text/javascript"></script><script src="CLNDR.js_files/window.js" charset="utf-8" type="text/javascript"></script><script charset="utf-8" id="sufioIoScript1" src="CLNDR.js_files/getSupportedSitesJSON.js" type="text/javascript"></script></head>
+<body>
+
+  <div class="wrap">
+
+    <div class="block bg-red header">
+      <div class="clndr-logo"></div>
+    </div>
+
+    <div class="block bg-gray">
+      <div class="inner">
+
+        <h1 class="banner-text">CLNDR.js ~ A jQuery Calendar Plugin</h1>
+
+        <div id="full-clndr" class="clearfix"><div class="clndr">
+            <div class="clndr-grid">
+              <div class="days-of-the-week clearfix">
+                
+                  <div class="header-day">S</div>
+                
+                  <div class="header-day">M</div>
+                
+                  <div class="header-day">T</div>
+                
+                  <div class="header-day">W</div>
+                
+                  <div class="header-day">T</div>
+                
+                  <div class="header-day">F</div>
+                
+                  <div class="header-day">S</div>
+                
+              </div>
+              <div class="days clearfix">
+                
+                  <div class="day adjacent-month last-month" id="calendar-day-2013-09-29"><span class="day-number">29</span></div>
+                
+                  <div class="day adjacent-month last-month" id="calendar-day-2013-09-30"><span class="day-number">30</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-01"><span class="day-number">1</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-02"><span class="day-number">2</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-03"><span class="day-number">3</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-04"><span class="day-number">4</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-05"><span class="day-number">5</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-06"><span class="day-number">6</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-07"><span class="day-number">7</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-08"><span class="day-number">8</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-09"><span class="day-number">9</span></div>
+                
+                  <div class="day event" id="calendar-day-2013-10-10"><span class="day-number">10</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-11"><span class="day-number">11</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-12"><span class="day-number">12</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-13"><span class="day-number">13</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-14"><span class="day-number">14</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-15"><span class="day-number">15</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-16"><span class="day-number">16</span></div>
+                
+                  <div class="day today" id="calendar-day-2013-10-17"><span class="day-number">17</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-18"><span class="day-number">18</span></div>
+                
+                  <div class="day event" id="calendar-day-2013-10-19"><span class="day-number">19</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-20"><span class="day-number">20</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-21"><span class="day-number">21</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-22"><span class="day-number">22</span></div>
+                
+                  <div class="day event" id="calendar-day-2013-10-23"><span class="day-number">23</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-24"><span class="day-number">24</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-25"><span class="day-number">25</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-26"><span class="day-number">26</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-27"><span class="day-number">27</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-28"><span class="day-number">28</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-29"><span class="day-number">29</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-30"><span class="day-number">30</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-31"><span class="day-number">31</span></div>
+                
+                  <div class="day adjacent-month next-month" id="calendar-day-2013-11-01"><span class="day-number">1</span></div>
+                
+                  <div class="day adjacent-month next-month" id="calendar-day-2013-11-02"><span class="day-number">2</span></div>
+                
+              </div>
+            </div>
+            <div class="event-listing">
+              <div class="event-listing-title">EVENTS THIS MONTH</div>
+              
+                  <div class="event-item">
+                    <div class="event-item-name">Persian Kitten Auction</div>
+                    <div class="event-item-location">Center for Beautiful Cats</div>
+                  </div>
+                
+                  <div class="event-item">
+                    <div class="event-item-name">Cat Frisbee</div>
+                    <div class="event-item-location">Jefferson Park</div>
+                  </div>
+                
+                  <div class="event-item">
+                    <div class="event-item-name">Kitten Demonstration</div>
+                    <div class="event-item-location">Center for Beautiful Cats</div>
+                  </div>
+                
+            </div>
+          </div></div>
+
+        <h3 class="banner-text below">Get the code at <a href="http://github.com/kylestetz/CLNDR">http://github.com/kylestetz/CLNDR</a></h3>
+
+      </div>
+    </div>
+
+    <div class="block bg-blue">
+      <div class="inner">
+        <h3>Here's The Deal</h3>
+        <p>CLNDR is a jQuery plugin for creating calendars. Unlike most 
+calendar plugins, this one doesn't generate markup. Instead you provide 
+an Underscore.js HTML template and in return CLNDR gives you a wealth of
+ data to use within it.</p>
+        <p>CLNDR is free of opinions about markup and style: it is the high-speed chassis on which you build the vehicle of your dreams.</p>
+        <p>For a little backstory and a soft introduction to the concepts in CLNDR, check out this article: <a href="http://punkave.com/window/2013/09/10/calendars-re-re-inventing-the-wheel">Calendars &amp; Re- Re-inventing the Wheel</a>.</p>
+
+        <h3>Here's How You Use It</h3>
+        <p>Just call <span class="code">clndr()</span> on the container.</p>
+
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">
+// this will use clndr's default template, which you probably don't want.
+</span>$<span class="token punctuation">(</span><span class="token string">'#calendar'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clndr<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// so instead, pass in your template as a string!
+</span>$<span class="token punctuation">(</span><span class="token string">'#calendar'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clndr<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> $<span class="token punctuation">(</span><span class="token string">'#calendar-template'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// there are a lot of options. the rabbit hole is deep.
+</span>$<span class="token punctuation">(</span><span class="token string">'#calendar'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clndr<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> $<span class="token punctuation">(</span><span class="token string">'#calendar-template'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  events<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> date<span class="token punctuation">:</span> <span class="token string">'2013-09-09'</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'CLNDR GitHub Page Finished'</span><span class="token punctuation">,</span> url<span class="token punctuation">:</span> <span class="token string">'http://github.com/kylestetz/CLNDR'</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  clickEvents<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    click<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    onMonthChange<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>month<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'you just went to '</span> <span class="token operator">+</span> month<span class="token punctuation">.</span><span class="token function">format<span class="token punctuation">(</span></span><span class="token string">'MMMM, YYYY'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  doneRendering<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'this would be a fine place to attach custom event handlers.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="block bg-gray">
+      <div class="inner">
+
+        <div id="mini-clndr"><div class="clndr">
+
+            <div class="controls">
+              <div class="clndr-previous-button">‹</div><div class="month">October</div><div class="clndr-next-button">›</div>
+            </div>
+
+            <div class="days-container">
+              <div class="days">
+                <div class="headers">
+                  <div class="day-header">S</div><div class="day-header">M</div><div class="day-header">T</div><div class="day-header">W</div><div class="day-header">T</div><div class="day-header">F</div><div class="day-header">S</div>
+                </div>
+                <div class="day adjacent-month last-month" id="calendar-day-2013-09-29">29</div><div class="day adjacent-month last-month" id="calendar-day-2013-09-30">30</div><div class="day" id="calendar-day-2013-10-01">1</div><div class="day" id="calendar-day-2013-10-02">2</div><div class="day" id="calendar-day-2013-10-03">3</div><div class="day" id="calendar-day-2013-10-04">4</div><div class="day" id="calendar-day-2013-10-05">5</div><div class="day" id="calendar-day-2013-10-06">6</div><div class="day" id="calendar-day-2013-10-07">7</div><div class="day" id="calendar-day-2013-10-08">8</div><div class="day" id="calendar-day-2013-10-09">9</div><div class="day event" id="calendar-day-2013-10-10">10</div><div class="day" id="calendar-day-2013-10-11">11</div><div class="day" id="calendar-day-2013-10-12">12</div><div class="day" id="calendar-day-2013-10-13">13</div><div class="day" id="calendar-day-2013-10-14">14</div><div class="day" id="calendar-day-2013-10-15">15</div><div class="day" id="calendar-day-2013-10-16">16</div><div class="day today" id="calendar-day-2013-10-17">17</div><div class="day" id="calendar-day-2013-10-18">18</div><div class="day event" id="calendar-day-2013-10-19">19</div><div class="day" id="calendar-day-2013-10-20">20</div><div class="day" id="calendar-day-2013-10-21">21</div><div class="day" id="calendar-day-2013-10-22">22</div><div class="day event" id="calendar-day-2013-10-23">23</div><div class="day" id="calendar-day-2013-10-24">24</div><div class="day" id="calendar-day-2013-10-25">25</div><div class="day" id="calendar-day-2013-10-26">26</div><div class="day" id="calendar-day-2013-10-27">27</div><div class="day" id="calendar-day-2013-10-28">28</div><div class="day" id="calendar-day-2013-10-29">29</div><div class="day" id="calendar-day-2013-10-30">30</div><div class="day" id="calendar-day-2013-10-31">31</div><div class="day adjacent-month next-month" id="calendar-day-2013-11-01">1</div><div class="day adjacent-month next-month" id="calendar-day-2013-11-02">2</div>
+              </div>
+              <div class="events">
+                <div class="headers">
+                  <div class="x-button">x</div>
+                  <div class="event-header">EVENTS</div>
+                </div>
+                <div class="events-list">
+                  
+                    <div class="event">
+                      <a href="">October 10th: Persian Kitten Auction</a>
+                    </div>
+                  
+                    <div class="event">
+                      <a href="">October 19th: Cat Frisbee</a>
+                    </div>
+                  
+                    <div class="event">
+                      <a href="">October 23rd: Kitten Demonstration</a>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+
+          </div></div>
+
+      </div>
+    </div>
+
+    <div class="block bg-green">
+      <div class="inner">
+
+        <h3>How does it work?</h3>
+        <p>CLNDR takes your template and injects some data into it. The 
+data contains everything you need to create a calendar. Here's what you 
+get:</p>
+
+        <pre class=" language-javascript"><code class=" language-javascript">
+daysOfTheWeek<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'T'</span><span class="token punctuation">,</span> <span class="token string">'W'</span><span class="token punctuation">,</span> <span class="token string">'T'</span><span class="token punctuation">,</span> <span class="token string">'F'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">]</span>
+numberOfRows<span class="token punctuation">:</span> <span class="token number">5</span>
+days<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    day<span class="token punctuation">:</span> <span class="token string">'1'</span><span class="token punctuation">,</span>
+    classes<span class="token punctuation">:</span> <span class="token string">'day today event'</span><span class="token punctuation">,</span>
+    id<span class="token punctuation">:</span> <span class="token string">'calendar-day-2013-09-01'</span><span class="token punctuation">,</span>
+    events<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    date<span class="token punctuation">:</span> <span class="token function">moment<span class="token punctuation">(</span></span><span class="token string">'2013-09-01'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">]</span>
+month<span class="token punctuation">:</span> <span class="token string">'September'</span>
+year<span class="token punctuation">:</span> <span class="token string">'2013'</span>
+eventsThisMonth<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+extras<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+        </code></pre>
+
+        <p>Most notable is the <span class="code">days</span> array, which contains an entire grid. We can loop through it in our template to make all of the markup:</p>
+
+        <pre class=" language-markup"><code class=" language-markup">
+&lt;% _.each(days, function(day) { %&gt;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%<span class="token punctuation">=</span> day.classes %<span class="token punctuation">&gt;</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>&lt;%= day.day %&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+&lt;% }); %&gt;
+        </code></pre>
+
+        <h3 class="more-space">Automatic Mouse Events</h3>
+        <p>CLNDR looks for next and previous buttons in your template. 
+These buttons trigger the calendar to be redrawn with a new month. By 
+default the classes are <span class="code">clndr-next-button</span> and <span class="code">clndr-previous-button</span>, however we can specify our own by passing in some options.</p>
+
+        <pre class=" language-markup"><code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clndr-controls<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clndr-previous-button<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>‹<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>month<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>&lt;%= month %&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clndr-next-button<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>›<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+&lt;% _.each(days, function(day) { %&gt;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%<span class="token punctuation">=</span> day.classes %<span class="token punctuation">&gt;</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>&lt;%= day.day %&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+&lt;% }); %&gt;
+        </code></pre>
+
+        <h3 class="more-space">Event Sorting</h3>
+        <p>CLNDR takes an array of event objects and weaves them into 
+the days array in your template. This means you can pass in as many 
+events as you want and CLNDR will make sure they show up when you need 
+them. In addition to exposing all of the data in your event object, the 
+class <span class="code">event</span> will be added to the <span class="code">days.classes</span> string for easy styling.</p>
+
+        <p>If you're looking to get all the events for the month in one array, you've got <span class="code">eventsThisMonth</span> as well. Here's the markup for the first calendar on this page:</p>
+
+        <pre class=" language-markup"><code class=" language-markup">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clndr-grid<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>days-of-the-week clearfix<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    &lt;% _.each(daysOfTheWeek, function(day) { %&gt;
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>header-day<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>&lt;%= day %&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    &lt;% }); %&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>days clearfix<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    &lt;% _.each(days, function(day) { %&gt;
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%<span class="token punctuation">=</span> day.classes %<span class="token punctuation">&gt;</span><span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%<span class="token punctuation">=</span> day.id %<span class="token punctuation">&gt;</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>day-number<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>&lt;%= day.day %&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    &lt;% }); %&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>event-listing<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>event-listing-title<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>EVENTS THIS MONTH<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  &lt;% _.each(eventsThisMonth, function(event) { %&gt;
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>event-item<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>event-item-name<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>&lt;%= event.name %&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>event-item-location<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>&lt;%= event.location %&gt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    &lt;% }); %&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        </code></pre>
+      </div>
+    </div>
+
+
+    <div class="block bg-gray">
+      <div class="inner">
+
+        <div id="clndr-3"><div class="clndr">
+            <div class="month-bar">October</div>
+            <div class="clndr-grid">
+              <div class="days-of-the-week clearfix">
+                
+                  <div class="header-day">S</div>
+                
+                  <div class="header-day">M</div>
+                
+                  <div class="header-day">T</div>
+                
+                  <div class="header-day">W</div>
+                
+                  <div class="header-day">T</div>
+                
+                  <div class="header-day">F</div>
+                
+                  <div class="header-day">S</div>
+                
+              </div>
+              <div class="days clearfix">
+                
+                  <div class="empty last-month" id=""><span class="day-number"></span></div>
+                
+                  <div class="empty last-month" id=""><span class="day-number"></span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-01"><span class="day-number">1</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-02"><span class="day-number">2</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-03"><span class="day-number">3</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-04"><span class="day-number">4</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-05"><span class="day-number">5</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-06"><span class="day-number">6</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-07"><span class="day-number">7</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-08"><span class="day-number">8</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-09"><span class="day-number">9</span></div>
+                
+                  <div class="day event" id="calendar-day-2013-10-10"><span class="day-number">10</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-11"><span class="day-number">11</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-12"><span class="day-number">12</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-13"><span class="day-number">13</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-14"><span class="day-number">14</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-15"><span class="day-number">15</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-16"><span class="day-number">16</span></div>
+                
+                  <div class="day today" id="calendar-day-2013-10-17"><span class="day-number">17</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-18"><span class="day-number">18</span></div>
+                
+                  <div class="day event" id="calendar-day-2013-10-19"><span class="day-number">19</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-20"><span class="day-number">20</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-21"><span class="day-number">21</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-22"><span class="day-number">22</span></div>
+                
+                  <div class="day event" id="calendar-day-2013-10-23"><span class="day-number">23</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-24"><span class="day-number">24</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-25"><span class="day-number">25</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-26"><span class="day-number">26</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-27"><span class="day-number">27</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-28"><span class="day-number">28</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-29"><span class="day-number">29</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-30"><span class="day-number">30</span></div>
+                
+                  <div class="day" id="calendar-day-2013-10-31"><span class="day-number">31</span></div>
+                
+                  <div class="empty next-month" id=""><span class="day-number"></span></div>
+                
+                  <div class="empty next-month" id=""><span class="day-number"></span></div>
+                
+              </div>
+            </div>
+          </div></div>
+
+      </div>
+    </div>
+
+    <div class="block bg-yellow">
+      <div class="inner">
+        <h3>Tell me about the Options.</h3>
+        <p>All of the available options:</p>
+
+        <pre class=" language-javascript"><code class=" language-javascript">
+$<span class="token punctuation">(</span><span class="token string">'.parent-element'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clndr<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true"> // the template: this could be stored in markup as a 
+</span> <span class="token comment" spellcheck="true"> // or pulled in as a string
+</span>  template<span class="token punctuation">:</span> clndrTemplate<span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // start the week off on Sunday (0), Monday (1), etc. Sunday is the default.
+</span>  weekOffset<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // determines which month to start with using either a date string or a moment object.
+</span>  startWithMonth<span class="token punctuation">:</span> <span class="token string">"YYYY-MM-DD"</span> or <span class="token function">moment<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // an array of day abbreviations. If you have moment.js set to a different language,
+</span> <span class="token comment" spellcheck="true"> // it will guess these for you! If for some reason that doesn't work, use this...
+</span> <span class="token comment" spellcheck="true"> // the array MUST start with Sunday (use in conjunction with weekOffset to change the starting day to Monday)
+</span>  daysOfTheWeek<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'L'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'J'</span><span class="token punctuation">,</span> <span class="token string">'V'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // callbacks!
+</span>  clickEvents<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true"> // fired whenever a calendar box is clicked.
+</span>   <span class="token comment" spellcheck="true"> // returns a 'target' object containing the DOM element, any events, and the date as a moment.js object.
+</span>    click<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token comment" spellcheck="true"> // fired when a user goes forward a month. returns a moment.js object set to the correct month.
+</span>    nextMonth<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>month<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token comment" spellcheck="true"> // fired when a user goes back a month. returns a moment.js object set to the correct month.
+</span>    previousMonth<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>month<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token comment" spellcheck="true"> // fired when a user goes back OR forward a month. returns a moment.js object set to the correct month.
+</span>    onMonthChange<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>month<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
+   <span class="token comment" spellcheck="true"> // fired when a user goes to the current month/year. returns a moment.js object set to the correct month.
+</span>    today<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>month<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // the target classnames that CLNDR will look for to bind events. these are the defaults.
+</span>  targets<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    nextButton<span class="token punctuation">:</span> <span class="token string">'clndr-next-button'</span><span class="token punctuation">,</span>
+    previousButton<span class="token punctuation">:</span> <span class="token string">'clndr-previous-button'</span><span class="token punctuation">,</span>
+    todayButton<span class="token punctuation">:</span> <span class="token string">'clndr-today-button'</span><span class="token punctuation">,</span>
+    day<span class="token punctuation">:</span> <span class="token string">'day'</span><span class="token punctuation">,</span>
+    empty<span class="token punctuation">:</span> <span class="token string">'empty'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // an array of event objects
+</span>  events<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // if you're supplying an events array, dateParameter points to the field in your event object containing a date string. It's set to 'date' by default.
+</span>  dateParameter<span class="token punctuation">:</span> <span class="token string">'date'</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // show the numbers of days in months adjacent to the current month (and populate them with their events). defaults to true.
+</span>  showAdjacentMonths<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // when days from adjacent months are clicked, switch the current month.
+</span> <span class="token comment" spellcheck="true"> // fires nextMonth/previousMonth/onMonthChange click callbacks. defaults to false.
+</span>  adjacentDaysChangeMonth<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // a callback when the calendar is done rendering. This is a good place to bind custom event handlers.
+</span>  doneRendering<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token comment" spellcheck="true"> // anything you want access to in your template
+</span>  extras<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+ <span class="token comment" spellcheck="true"> // if you want to use a different templating language, here's your ticket.
+</span> <span class="token comment" spellcheck="true"> // Precompile your template (before you call clndr), pass the data from the render function
+</span> <span class="token comment" spellcheck="true"> // into your template, and return the result. The result must be a string containing valid markup.
+</span> <span class="token comment" spellcheck="true"> // More under 'Template Rendering Engine' below.
+</span>  render<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'&lt;div class="html data as a string"&gt;&lt;/div&gt;'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        </code></pre>
+
+        <h3 class="more-space">I want the instance so I can do stuff with it.</h3>
+        <p>You can save your clndr instance to a variable and mess with it later:</p>
+
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">
+// Create a Clndr and save the instance as theCalendarInstance
+</span><span class="token keyword">var</span> theCalendarInstance <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">'#myCalendar'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clndr<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Go to the next month
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">forward<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Go to the previous month
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">back<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Set the month using a number from 0-11 or a month name
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">setMonth<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+theCalendarInstance<span class="token punctuation">.</span><span class="token function">setMonth<span class="token punctuation">(</span></span><span class="token string">'February'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Go to the next year
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">nextYear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Go to the previous year
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">previousYear<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Set the year
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">setYear<span class="token punctuation">(</span></span><span class="token number">1997</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Change the events. Note that this triggers a re-render of the calendar.
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">setEvents<span class="token punctuation">(</span></span>newEventsArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Add events. Note that this triggers a re-render of the calendar.
+</span>theCalendarInstance<span class="token punctuation">.</span><span class="token function">addEvents<span class="token punctuation">(</span></span>additionalEventsArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        </code></pre>
+
+        <p>Want to play with an instance of CLNDR right now? Open the developer console and poke at the variable <span class="code">clndr</span>, which controls the first calendar on this page.</p>
+
+        <h3>There's more to know: head over to the GitHub.</h3>
+        <p>If you've still got questions, the GitHub readme probably has some answers ~ <a href="http://github.com/kylestetz/CLNDR">CLNDR on GitHub</a>. If not, open issues and make pull requests!</p>
+      </div>
+    </div>
+
+    <div class="block bg-gray header">
+      <div class="inner">
+        <div class="clndr-logo"></div>
+      </div>
+    </div>
+
+    <div class="block bg-red">
+      <div class="inner">
+        <h2>Many Thanks</h2>
+        <p>CLNDR is made possible because of the work of many awesome projects: <a href="http://jquery.com/">jQuery</a>, <a href="http://underscorejs.org/">Underscore.js</a>, and <a href="http://momentjs.com/">Moment.js</a>. CLNDR is developed by <a href="http://github.com/kylestetz">Kyle Stetz</a> and is used and supported by the team at <a href="http://punkave.com/">P'unk Avenue</a>.</p>
+      </div>
+    </div>
+
+  </div>
+
+
+<iframe style="position: absolute; width: 1px; height: 1px; top: 0px; left: 0px; visibility: hidden;"></iframe><sfmsg data="{&quot;imageCount&quot;:0,&quot;ip&quot;:&quot;1.1.1.1&quot;}" id="sfMsgId"></sfmsg></body></html>
